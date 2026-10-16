@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ВСЯ МАТЕМАТИКА — Формулы + Объяснения</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #f0f0f0;
+    color: #222;
+    line-height: 1.7;
+  }
+  header {
+    background: #2c3e50;
+    color: #fff;
+    padding: 30px 20px;
+    text-align: center;
+  }
+  header h1 { font-size: 2rem; margin-bottom: 8px; }
+  header p { color: #bdc3c7; font-size: 1rem; }
+  .search-box { margin-top: 20px; }
+  .search-box input {
+    padding: 12px 20px;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 6px;
+    border: 2px solid #34495e;
+    outline: none;
+    font-size: 1rem;
+    background: #fff;
+    color: #222;
+  }
+  .search-box input:focus { border-color: #3498db; }
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    padding: 12px;
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid #ddd;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  nav button {
+    padding: 7px 12px;
+    border: 1px solid #3498db;
+    border-radius: 4px;
+    background: #fff;
+    color: #3498db;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: 0.2s;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  nav button:hover, nav button.active {
+    background: #3498db;
+    color: #fff;
+  }
+  main { max-width: 1000px; margin: 0 auto; padding: 20px 15px; }
+  .topic {
+    background: #fff;
+    border-radius: 8px;
+    padding: 22px;
+    margin-bottom: 22px;
+    border-left: 4px solid #3498db;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+  .topic h2 {
+    color: #2c3e50;
+    margin-bottom: 12px;
+    font-size: 1.35rem;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+  }
+  .topic h3 {
+    color: #2980b9;
+    margin: 16px 0 8px;
+    font-size: 1.1rem;
+  }
+  .definition {
+    background: #eaf4fc;
+    border-left: 4px solid #3498db;
+    padding: 12px 16px;
+    margin: 12px 0;
+    border-radius: 4px;
+    font-size: 0.95rem;
+  }
+  .definition b { color: #2c3e50; }
+  .formula {
+    background: #fafafa;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 10px 0;
+    font-family: 'Cambria Math', 'Times New Roman', serif;
+    font-size: 1.1rem;
+    color: #c0392b;
+    border-left: 3px solid #c0392b;
+    overflow-x: auto;
+    white-space: pre-wrap;
+  }
+  .formula .label {
+    display: block;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.75rem;
+    color: #7f8c8d;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .explanation {
+    color: #555;
+    font-size: 0.92rem;
+    margin-top: 6px;
+    padding-left: 12px;
+    border-left: 2px solid #ddd;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  .example {
+    background: #fff8e1;
+    border-left: 3px solid #f39c12;
+    padding: 10px 14px;
+    margin: 8px 0;
+    font-size: 0.9rem;
+    border-radius: 4px;
+  }
+  .example b { color: #e67e22; }
+  .frac {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 0.95em;
+    line-height: 1.1;
+    margin: 0 2px;
+  }
+  .frac .num {
+    display: block;
+    border-bottom: 1.5px solid currentColor;
+    padding: 0 3px;
+  }
+  .frac .den {
+    display: block;
+    padding: 0 3px;
+  }
+  .hidden { display: none; }
+  footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: #7f8c8d;
+    font-size: 0.85rem;
+    border-top: 1px solid #ddd;
+  }
+  .no-result {
+    text-align: center;
+    color: #7f8c8d;
+    padding: 40px;
+    font-size: 1.1rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📐 ВСЯ МАТЕМАТИКА</h1>
+  <p>Формулы + Объяснения + Примеры • Всё просто</p>
+  <div class="search-box">
+    <input type="text" id="search" placeholder="🔍 Поиск темы или формулы...">
+  </div>
+</header>
+
+<nav id="nav">
+  <button class="active" data-filter="all">Все</button>
+  <button data-filter="arith">Арифметика</button>
+  <button data-filter="fractions">Дроби</button>
+  <button data-filter="nod">НОК и НОД</button>
+  <button data-filter="algebra">Алгебра</button>
+  <button data-filter="trig">Тригонометрия</button>
+  <button data-filter="log">Логарифмы</button>
+  <button data-filter="limit">Пределы</button>
+  <button data-filter="deriv">Производные</button>
+  <button data-filter="integ">Интегралы</button>
+  <button data-filter="planim">Планиметрия</button>
+  <button data-filter="stereo">Стереометрия</button>
+  <button data-filter="analit">Аналит. геом.</button>
+  <button data-filter="vect">Векторы</button>
+  <button data-filter="prob">Вероятность</button>
+  <button data-filter="stat">Статистика</button>
+  <button data-filter="matr">Матрицы</button>
+  <button data-filter="compl">Комплексные</button>
+  <button data-filter="prog">Прогрессии</button>
+  <button data-filter="combin">Комбинаторика</button>
+</nav>
+
+<main id="content">
+
+<!-- ==================== АРИФМЕТИКА ==================== -->
+<section class="topic" data-cat="arith">
+  <h2>🔢 Арифметика</h2>
+
+  <div class="definition">
+    <b>Что это:</b> Арифметика — раздел математики о числах и простейших действиях: сложение, вычитание, умножение, деление.
+  </div>
+
+  <h3>Свойства действий</h3>
+  <div class="formula"><span class="label">Переместительный закон</span>a + b = b + a
+a · b = b · a</div>
+  <div class="explanation">От перестановки слагаемых (множителей) сумма (произведение) не меняется.</div>
+
+  <div class="formula"><span class="label">Сочетательный закон</span>(a + b) + c = a + (b + c)
+(a · b) · c = a · (b · c)</div>
+
+  <div class="formula"><span class="label">Распределительный закон</span>a · (b + c) = a·b + a·c</div>
+
+  <h3>Степени</h3>
+  <div class="formula"><span class="label">Свойства степеней</span>aᵐ · aⁿ = aᵐ⁺ⁿ
+aᵐ : aⁿ = aᵐ⁻ⁿ
+(aᵐ)ⁿ = aᵐⁿ
+(ab)ⁿ = aⁿ·bⁿ
+(a/b)ⁿ = aⁿ/bⁿ
+a⁰ = 1  (a ≠ 0)
+a⁻ⁿ = 1/aⁿ</div>
+  <div class="example"><b>Пример:</b> 2³ · 2² = 2⁵ = 32</div>
+
+  <h3>Корни</h3>
+  <div class="formula"><span class="label">Свойства корней</span>√(a·b) = √a · √b
+√(a/b) = √a / √b
+(√a)² = a
+ⁿ√(aᵐ) = aᵐ/ⁿ
+√a = a^(1/2)</div>
+
+  <h3>Модуль</h3>
+  <div class="definition"><b>Модуль</b> — расстояние от числа до нуля. Всегда неотрицательный.</div>
+  <div class="formula">|a| = a, если a ≥ 0
+|a| = -a, если a < 0
+|a·b| = |a|·|b|
+|a + b| ≤ |a| + |b|</div>
+  <div class="example"><b>Пример:</b> |−5| = 5, |3| = 3</div>
+
+  <h3>Множества чисел</h3>
+  <div class="formula">ℕ — натуральные (1, 2, 3, ...)
+ℤ — целые (..., −2, −1, 0, 1, 2, ...)
+ℚ — рациональные (дроби)
+ℝ — действительные (все числа на прямой)
+ℂ — комплексные
+ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ ⊂ ℂ</div>
+</section>
+
+<!-- ==================== ДРОБИ ==================== -->
+<section class="topic" data-cat="fractions">
+  <h2>➗ Дроби</h2>
+
+  <div class="definition">
+    <b>Дробь</b> — это число вида <span class="frac"><span class="num">a</span><span class="den">b</span></span>, где a — числитель, b — знаменатель (b ≠ 0).
+  </div>
+
+  <h3>Основное свойство дроби</h3>
+  <div class="formula"><span class="label">Основное свойство</span><span class="frac"><span class="num">a</span><span class="den">b</span></span> = <span class="frac"><span class="num">a·c</span><span class="den">b·c</span></span></div>
+  <div class="explanation">Если числитель и знаменатель умножить (или разделить) на одно и то же число, дробь не изменится.</div>
+  <div class="example"><b>Пример:</b> <span class="frac"><span class="num">1</span><span class="den">2</span></span> = <span class="frac"><span class="num">2</span><span class="den">4</span></span> = <span class="frac"><span class="num">50</span><span class="den">100</span></span></div>
+
+  <h3>Сложение и вычитание</h3>
+  <div class="formula"><span class="label">Одинаковые знаменатели</span><span class="frac"><span class="num">a</span><span class="den">c</span></span> + <span class="frac"><span class="num">b</span><span class="den">c</span></span> = <span class="frac"><span class="num">a + b</span><span class="den">c</span></span></div>
+  <div class="formula"><span class="label">Разные знаменатели</span><span class="frac"><span class="num">a</span><span class="den">b</span></span> + <span class="frac"><span class="num">c</span><span class="den">d</span></span> = <span class="frac"><span class="num">a·d + b·c</span><span class="den">b·d</span></span></div>
+  <div class="example"><b>Пример:</b> <span class="frac"><span class="num">1</span><span class="den">2</span></span> + <span class="frac"><span class="num">1</span><span class="den">3</span></span> = <span class="frac"><span class="num">3 + 2</span><span class="den">6</span></span> = <span class="frac"><span class="num">5</span><span class="den">6</span></span></div>
+
+  <h3>Умножение и деление</h3>
+  <div class="formula"><span class="label">Умножение</span><span class="frac"><span class="num">a</span><span class="den">b</span></span> · <span class="frac"><span class="num">c</span><span class="den">d</span></span> = <span class="frac"><span class="num">a·c</span><span class="den">b·d</span></span></div>
+  <div class="formula"><span class="label">Деление</span><span class="frac"><span class="num">a</span><span class="den">b</span></span> : <span class="frac"><span class="num">c</span><span class="den">d</span></span> = <span class="frac"><span class="num">a·d</span><span class="den">b·c</span></span></div>
+  <div class="example"><b>Пример:</b> <span class="frac"><span class="num">1</span><span class="den">2</span></span> : <span class="frac"><span class="num">1</span><span class="den">4</span></span> = <span class="frac"><span class="num">1·4</span><span class="den">2·1</span></span> = 2</div>
+
+  <h3>Смешанное число</h3>
+  <div class="formula"><span class="label">Перевод</span>a <span class="frac"><span class="num">b</span><span class="den">c</span></span> = <span class="frac"><span class="num">a·c + b</span><span class="den">c</span></span></div>
+  <div class="example"><b>Пример:</b> 2 <span class="frac"><span class="num">1</span><span class="den">3</span></span> = <span class="frac"><span class="num">7</span><span class="den">3</span></span></div>
+
+  <h3>Сравнение дробей</h3>
+  <div class="formula"><span class="label">Сравнение</span><span class="frac"><span class="num">a</span><span class="den">b</span></span> > <span class="frac"><span class="num">c</span><span class="den">d</span></span>  ⇔  a·d > b·c</div>
+  <div class="explanation">Приводим к общему знаменателю или перемножаем крест-накрест.</div>
+</section>
+
+<!-- ==================== НОК И НОД ==================== -->
+<section class="topic" data-cat="nod">
+  <h2>🔗 НОК и НОД</h2>
+
+  <div class="definition">
+    <b>НОД</b> — наибольший общий делитель. Самое большое число, на которое делятся оба числа.<br>
+    <b>НОК</b> — наименьшее общее кратное. Самое маленькое число, которое делится на оба числа.
+  </div>
+
+  <h3>Как найти НОД</h3>
+  <div class="formula"><span class="label">Способ 1: Разложение</span>1. Разложить числа на простые множители
+2. Взять общие множители в наименьшей степени
+3. Перемножить</div>
+  <div class="example"><b>Пример:</b> НОД(12, 18)<br>
+  12 = 2² · 3<br>
+  18 = 2 · 3²<br>
+  Общие: 2¹ · 3¹ = <b>6</b></div>
+
+  <h3>Как найти НОК</h3>
+  <div class="formula"><span class="label">Способ 1: Разложение</span>1. Разложить числа на простые множители
+2. Взять все множители в наибольшей степени
+3. Перемножить</div>
+  <div class="example"><b>Пример:</b> НОК(12, 18)<br>
+  12 = 2² · 3<br>
+  18 = 2 · 3²<br>
+  Все: 2² · 3² = <b>36</b></div>
+
+  <h3>Связь НОД и НОК</h3>
+  <div class="formula"><span class="label">Главная формула</span>НОД(a, b) · НОК(a, b) = a · b</div>
+  <div class="explanation">Произведение НОД и НОК двух чисел равно произведению самих чисел.</div>
+  <div class="example"><b>Проверка:</b> НОД(12,18) · НОК(12,18) = 6 · 36 = 216 = 12 · 18 ✓</div>
+
+  <h3>Алгоритм Евклида</h3>
+  <div class="formula"><span class="label">Быстрый способ для НОД</span>НОД(a, b) = НОД(b, a mod b)
+Пока b ≠ 0</div>
+  <div class="example"><b>Пример:</b> НОД(48, 18)<br>
+  48 mod 18 = 12<br>
+  18 mod 12 = 6<br>
+  12 mod 6 = 0<br>
+  Ответ: <b>6</b></div>
+
+  <h3>Взаимно простые числа</h3>
+  <div class="definition"><b>Взаимно простые</b> — числа, у которых НОД = 1.</div>
+  <div class="example"><b>Пример:</b> 8 и 9 — взаимно простые, НОД(8,9) = 1</div>
+</section>
+
+<!-- ==================== АЛГЕБРА ==================== -->
+<section class="topic" data-cat="algebra">
+  <h2>➗ Алгебра</h2>
+
+  <div class="definition">
+    <b>Алгебра</b> — раздел математики, изучающий выражения с переменными, уравнения и неравенства.
+  </div>
+
+  <h3>Формулы сокращённого умножения</h3>
+  <div class="formula"><span class="label">Квадрат суммы и разности</span>(a + b)² = a² + 2ab + b²
+(a - b)² = a² - 2ab + b²</div>
+  <div class="formula"><span class="label">Разность квадратов</span>a² - b² = (a - b)(a + b)</div>
+  <div class="formula"><span class="label">Куб суммы и разности</span>(a + b)³ = a³ + 3a²b + 3ab² + b³
+(a - b)³ = a³ - 3a²b + 3ab² - b³</div>
+  <div class="formula"><span class="label">Сумма и разность кубов</span>a³ + b³ = (a + b)(a² - ab + b²)
+a³ - b³ = (a - b)(a² + ab + b²)</div>
+  <div class="formula"><span class="label">Квадрат трёхчлена</span>(a + b + c)² = a² + b² + c² + 2ab + 2bc + 2ac</div>
+  <div class="example"><b>Пример:</b> (x + 3)² = x² + 6x + 9</div>
+
+  <h3>Квадратное уравнение</h3>
+  <div class="definition"><b>Квадратное уравнение</b> — уравнение вида ax² + bx + c = 0, где a ≠ 0.</div>
+  <div class="formula"><span class="label">Дискриминант</span>D = b² - 4ac</div>
+  <div class="formula"><span class="label">Корни</span>x = (-b ± √D) / 2a</div>
+  <div class="explanation">D > 0 — два корня, D = 0 — один корень, D < 0 — нет действительных корней.</div>
+  <div class="example"><b>Пример:</b> x² - 5x + 6 = 0<br>
+  D = 25 - 24 = 1<br>
+  x₁ = (5+1)/2 = 3, x₂ = (5−1)/2 = 2</div>
+
+  <h3>Теорема Виета</h3>
+  <div class="formula"><span class="label">Сумма и произведение корней</span>x₁ + x₂ = -b/a
+x₁ · x₂ = c/a</div>
+  <div class="example"><b>Пример:</b> x² - 5x + 6 = 0<br>
+  x₁ + x₂ = 5, x₁ · x₂ = 6 → x₁ = 2, x₂ = 3</div>
+
+  <h3>Неполные квадратные уравнения</h3>
+  <div class="formula">ax² + bx = 0  ⇒  x(ax + b) = 0  ⇒  x₁ = 0, x₂ = -b/a
+ax² + c = 0  ⇒  x² = -c/a
+ax² = 0  ⇒  x = 0</div>
+
+  <h3>Линейное уравнение</h3>
+  <div class="formula">ax + b = 0  ⇒  x = -b/a  (a ≠ 0)</div>
+
+  <h3>Система уравнений (метод Крамера)</h3>
+  <div class="formula">a₁x + b₁y = c₁
+a₂x + b₂y = c₂
+Δ = a₁b₂ - a₂b₁
+x = (c₁b₂ - c₂b₁)/Δ
+y = (a₁c₂ - a₂c₁)/Δ</div>
+
+  <h3>Неравенства</h3>
+  <div class="formula"><span class="label">Свойства</span>Если a > b, то a + c > b + c
+Если a > b и c > 0, то ac > bc
+Если a > b и c < 0, то ac < bc</div>
+
+  <h3>Неравенства с модулем</h3>
+  <div class="formula">|x| < a  ⇔  -a < x < a
+|x| > a  ⇔  x < -a  или  x > a
+|x| ≤ a  ⇔  -a ≤ x ≤ a
+|x| ≥ a  ⇔  x ≤ -a  или  x ≥ a</div>
+
+  <h3>Теорема Безу</h3>
+  <div class="formula">P(x) = (x - a)·Q(x) + R
+P(a) = R</div>
+
+  <h3>Разложение квадратного трёхчлена</h3>
+  <div class="formula">ax² + bx + c = a(x - x₁)(x - x₂)</div>
+</section>
+
+<!-- ==================== ТРИГОНОМЕТРИЯ ==================== -->
+<section class="topic" data-cat="trig">
+  <h2>📐 Тригонометрия</h2>
+
+  <div class="definition">
+    <b>Тригонометрия</b> — раздел математики о соотношениях сторон и углов треугольника, а также о тригонометрических функциях.
+  </div>
+
+  <h3>Основные тождества</h3>
+  <div class="formula">sin²α + cos²α = 1
+tanα = sinα/cosα
+cotα = cosα/sinα
+tanα · cotα = 1
+1 + tan²α = 1/cos²α
+1 + cot²α = 1/sin²α</div>
+
+  <h3>Сумма и разность углов</h3>
+  <div class="formula">sin(α + β) = sinα·cosβ + cosα·sinβ
+sin(α - β) = sinα·cosβ - cosα·sinβ
+cos(α + β) = cosα·cosβ - sinα·sinβ
+cos(α - β) = cosα·cosβ + sinα·sinβ
+tan(α + β) = (tanα + tanβ)/(1 - tanα·tanβ)
+tan(α - β) = (tanα - tanβ)/(1 + tanα·tanβ)</div>
+
+  <h3>Двойной угол</h3>
+  <div class="formula">sin2α = 2sinα·cosα
+cos2α = cos²α - sin²α = 1 - 2sin²α = 2cos²α - 1
+tan2α = 2tanα/(1 - tan²α)</div>
+  <div class="example"><b>Пример:</b> sin60° = 2·sin30°·cos30° = 2·½·(√3/2) = √3/2</div>
+
+  <h3>Половина угла</h3>
+  <div class="formula">sin(α/2) = ±√((1 - cosα)/2)
+cos(α/2) = ±√((1 + cosα)/2)
+tan(α/2) = sinα/(1 + cosα) = (1 - cosα)/sinα</div>
+
+  <h3>Тройной угол</h3>
+  <div class="formula">sin3α = 3sinα - 4sin³α
+cos3α = 4cos³α - 3cosα</div>
+
+  <h3>Произведение → сумма</h3>
+  <div class="formula">sinα·cosβ = ½[sin(α+β) + sin(α-β)]
+cosα·cosβ = ½[cos(α-β) + cos(α+β)]
+sinα·sinβ = ½[cos(α-β) - cos(α+β)]</div>
+
+  <h3>Сумма → произведение</h3>
+  <div class="formula">sinα + sinβ = 2sin((α+β)/2)·cos((α-β)/2)
+sinα - sinβ = 2cos((α+β)/2)·sin((α-β)/2)
+cosα + cosβ = 2cos((α+β)/2)·cos((α-β)/2)
+cosα - cosβ = -2sin((α+β)/2)·sin((α-β)/2)</div>
+
+  <h3>Формулы приведения</h3>
+  <div class="formula">sin(90° - α) = cosα
+cos(90° - α) = sinα
+sin(180° - α) = sinα
+cos(180° - α) = -cosα
+sin(180° + α) = -sinα
+cos(180° + α) = -cosα
+sin(360° - α) = -sinα
+cos(360° - α) = cosα</div>
+
+  <h3>Значения углов</h3>
+  <div class="formula">sin0° = 0, cos0° = 1, tan0° = 0
+sin30° = ½, cos30° = √3/2, tan30° = √3/3
+sin45° = √2/2, cos45° = √2/2, tan45° = 1
+sin60° = √3/2, cos60° = ½, tan60° = √3
+sin90° = 1, cos90° = 0, tan90° — не существует</div>
+
+  <h3>Теорема синусов</h3>
+  <div class="formula">a/sinA = b/sinB = c/sinC = 2R</div>
+
+  <h3>Теорема косинусов</h3>
+  <div class="formula">c² = a² + b² - 2ab·cosC
+cosC = (a² + b² - c²)/2ab</div>
+
+  <h3>Обратные функции</h3>
+  <div class="formula">arcsinx + arccosx = π/2
+arctanx + arccotx = π/2
+arcsin(-x) = -arcsinx
+arccos(-x) = π - arccosx</div>
+
+  <h3>Простейшие уравнения</h3>
+  <div class="formula">sinx = a  ⇒  x = (-1)ⁿ·arcsina + πn
+cosx = a  ⇒  x = ±arccosa + 2πn
+tanx = a  ⇒  x = arctana + πn
+cotx = a  ⇒  x = arccota + πn</div>
+</section>
+
+<!-- ==================== ЛОГАРИФМЫ ==================== -->
+<section class="topic" data-cat="log">
+  <h2>📊 Логарифмы</h2>
+
+  <div class="definition">
+    <b>Логарифм</b> — показатель степени, в которую надо возвести основание, чтобы получить данное число.
+  </div>
+
+  <div class="formula"><span class="label">Определение</span>logₐ b = c  ⇔  aᶜ = b
+a > 0, a ≠ 1, b > 0
+lg b = log₁₀ b
+ln b = log_e b</div>
+  <div class="example"><b>Пример:</b> log₂ 8 = 3, т.к. 2³ = 8</div>
+
+  <h3>Свойства</h3>
+  <div class="formula">logₐ(x·y) = logₐx + logₐy
+logₐ(x/y) = logₐx - logₐy
+logₐ(xⁿ) = n·logₐx
+logₐ(ⁿ√x) = (1/n)·logₐx
+logₐ a = 1
+logₐ 1 = 0
+a^(logₐ b) = b</div>
+
+  <h3>Переход к новому основанию</h3>
+  <div class="formula">logₐ b = log_c b / log_c a
+logₐ b = 1 / log_b a</div>
+
+  <h3>Показательные уравнения</h3>
+  <div class="formula">aˣ = b  ⇒  x = logₐ b
+aˣ = aʸ  ⇒  x = y</div>
+
+  <h3>Логарифмические уравнения</h3>
+  <div class="formula">logₐ f(x) = logₐ g(x)  ⇒  f(x) = g(x)
+при f(x) > 0, g(x) > 0</div>
+</section>
+
+<!-- ==================== ПРЕДЕЛЫ ==================== -->
+<section class="topic" data-cat="limit">
+  <h2>♾️ Пределы</h2>
+
+  <div class="definition">
+    <b>Предел</b> — значение, к которому стремится функция при приближении аргумента к некоторой точке.
+  </div>
+
+  <div class="formula"><span class="label">Обозначение</span>lim(x→a) f(x) = L</div>
+
+  <h3>Основные пределы</h3>
+  <div class="formula">lim(x→0) sinx/x = 1
+lim(x→0) tanx/x = 1
+lim(x→0) (1 - cosx)/x² = ½
+lim(x→0) (eˣ - 1)/x = 1
+lim(x→0) ln(1 + x)/x = 1
+lim(x→∞) (1 + 1/x)ˣ = e
+lim(x→0) (1 + x)^(1/x) = e</div>
+
+  <h3>Свойства</h3>
+  <div class="formula">lim(f ± g) = lim f ± lim g
+lim(f · g) = lim f · lim g
+lim(f / g) = lim f / lim g  (lim g ≠ 0)
+lim(C · f) = C · lim f</div>
+
+  <h3>Правило Лопиталя</h3>
+  <div class="formula">lim f/g = lim f'/g'
+при 0/0 или ∞/∞</div>
+
+  <h3>Непрерывность</h3>
+  <div class="formula">f(x) непрерывна в точке a:
+lim(x→a) f(x) = f(a)</div>
+</section>
+
+<!-- ==================== ПРОИЗВОДНЫЕ ==================== -->
+<section class="topic" data-cat="deriv">
+  <h2>📈 Производные</h2>
+
+  <div class="definition">
+    <b>Производная</b> — скорость изменения функции. Показывает, как быстро меняется функция при изменении аргумента.
+  </div>
+
+  <div class="formula"><span class="label">Определение</span>f'(x) = lim(Δx→0) [f(x+Δx) - f(x)]/Δx</div>
+
+  <h3>Основные производные</h3>
+  <div class="formula">(C)' = 0
+(x)' = 1
+(xⁿ)' = n·xⁿ⁻¹
+(√x)' = 1/(2√x)
+(1/x)' = -1/x²
+(eˣ)' = eˣ
+(aˣ)' = aˣ·lna
+(lnx)' = 1/x
+(logₐx)' = 1/(x·lna)
+(sinx)' = cosx
+(cosx)' = -sinx
+(tanx)' = 1/cos²x
+(cotx)' = -1/sin²x
+(arcsinx)' = 1/√(1-x²)
+(arccosx)' = -1/√(1-x²)
+(arctanx)' = 1/(1+x²)</div>
+
+  <h3>Правила дифференцирования</h3>
+  <div class="formula">(u + v)' = u' + v'
+(u - v)' = u' - v'
+(u·v)' = u'v + uv'
+(u/v)' = (u'v - uv')/v²
+(C·u)' = C·u'</div>
+
+  <h3>Сложная функция</h3>
+  <div class="formula">[f(g(x))]' = f'(g(x)) · g'(x)</div>
+  <div class="example"><b>Пример:</b> (sin(2x))' = cos(2x) · 2 = 2cos(2x)</div>
+
+  <h3>Геометрический смысл</h3>
+  <div class="formula">k = f'(x₀) — угловой коэффициент касательной
+y - f(x₀) = f'(x₀)(x - x₀) — касательная
+y - f(x₀) = -1/f'(x₀) · (x - x₀) — нормаль</div>
+
+  <h3>Физический смысл</h3>
+  <div class="formula">v(t) = s'(t) — скорость
+a(t) = v'(t) = s''(t) — ускорение</div>
+
+  <h3>Экстремумы</h3>
+  <div class="formula">f'(x) = 0 — критические точки
+f''(x) > 0 — минимум
+f''(x) < 0 — максимум
+f''(x) = 0 — точка перегиба</div>
+
+  <h3>Возрастание и убывание</h3>
+  <div class="formula">f'(x) > 0 — возрастает
+f'(x) < 0 — убывает</div>
+</section>
+
+<!-- ==================== ИНТЕГРАЛЫ ==================== -->
+<section class="topic" data-cat="integ">
+  <h2>∫ Интегралы</h2>
+
+  <div class="definition">
+    <b>Интеграл</b> — операция, обратная производной. Позволяет находить площади, объёмы, суммы.
+  </div>
+
+  <div class="formula"><span class="label">Неопределённый интеграл</span>∫f(x)dx = F(x) + C
+F'(x) = f(x)</div>
+
+  <h3>Основные интегралы</h3>
+  <div class="formula">∫xⁿ dx = xⁿ⁺¹/(n+1) + C
+∫(1/x) dx = ln|x| + C
+∫eˣ dx = eˣ + C
+∫aˣ dx = aˣ/lna + C
+∫sinx dx = -cosx + C
+∫cosx dx = sinx + C
+∫(1/cos²x) dx = tanx + C
+∫(1/sin²x) dx = -cotx + C
+∫(1/√(1-x²)) dx = arcsinx + C
+∫(1/(1+x²)) dx = arctanx + C
+∫lnx dx = x·lnx - x + C</div>
+
+  <h3>Свойства</h3>
+  <div class="formula">∫(f + g) dx = ∫f dx + ∫g dx
+∫C·f(x) dx = C·∫f(x) dx</div>
+
+  <h3>Формула Ньютона-Лейбница</h3>
+  <div class="formula">∫[a,b] f(x) dx = F(b) - F(a)</div>
+
+  <h3>Интегрирование по частям</h3>
+  <div class="formula">∫u dv = uv - ∫v du</div>
+
+  <h3>Замена переменной</h3>
+  <div class="formula">∫f(g(x))·g'(x) dx = ∫f(u) du
+u = g(x), du = g'(x)dx</div>
+
+  <h3>Приложения</h3>
+  <div class="formula">S = ∫[a,b] f(x) dx — площадь
+V = π∫[a,b] f²(x) dx — объём вращения
+L = ∫[a,b] √(1 + (f'(x))²) dx — длина дуги</div>
+</section>
+
+<!-- ==================== ПЛАНИМЕТРИЯ ==================== -->
+<section class="topic" data-cat="planim">
+  <h2>🔷 Планиметрия</h2>
+
+  <div class="definition">
+    <b>Планиметрия</b> — раздел геометрии о фигурах на плоскости.
+  </div>
+
+  <h3>Треугольник</h3>
+  <div class="formula"><span class="label">Площадь</span>S = ½·a·h
+S = ½·a·b·sinC
+S = √(p(p-a)(p-b)(p-c))  (Герон)
+p = (a+b+c)/2
+S = abc/(4R)
+S = p·r</div>
+  <div class="formula"><span class="label">Теоремы</span>a² + b² = c²  (Пифагор)
+a/sinA = b/sinB = c/sinC = 2R
+c² = a² + b² - 2ab·cosC</div>
+
+  <h3>Равносторонний треугольник</h3>
+  <div class="formula">S = a²√3/4
+h = a√3/2
+R = a/√3
+r = a/(2√3)</div>
+
+  <h3>Прямоугольный треугольник</h3>
+  <div class="formula">a² + b² = c²
+h² = a_c · b_c
+a² = c · a_c
+b² = c · b_c
+sinA = a/c, cosA = b/c, tanA = a/b</div>
+
+  <h3>Квадрат</h3>
+  <div class="formula">S = a²
+P = 4a
+d = a√2
+R = a/√2
+r = a/2</div>
+
+  <h3>Прямоугольник</h3>
+  <div class="formula">S = a·b
+P = 2(a+b)
+d = √(a²+b²)</div>
+
+  <h3>Параллелограмм</h3>
+  <div class="formula">S = a·h = a·b·sinα
+P = 2(a+b)
+d₁² + d₂² = 2(a² + b²)</div>
+
+  <h3>Ромб</h3>
+  <div class="formula">S = a·h = a²·sinα = ½·d₁·d₂
+P = 4a
+d₁² + d₂² = 4a²</div>
+
+  <h3>Трапеция</h3>
+  <div class="formula">S = ½(a+b)·h
+m = (a+b)/2 — средняя линия</div>
+
+  <h3>Окружность и круг</h3>
+  <div class="formula">C = 2πR = πD
+S = πR²
+l = R·α  (длина дуги)
+S_сектора = ½R²·α = πR²·α/360°</div>
+
+  <h3>Вписанные углы</h3>
+  <div class="formula">Вписанный угол = ½ центрального
+Угол в полуокружности = 90°</div>
+
+  <h3>Вписанная и описанная окружности</h3>
+  <div class="formula">Треугольник: R = a/(2sinA), r = S/p
+Квадрат: R = a/√2, r = a/2
+Правильный n-угольник: R = a/(2sin(π/n)), r = a/(2tan(π/n))</div>
+
+  <h3>Правильный многоугольник</h3>
+  <div class="formula">S = ½·P·r
+Число диагоналей: n(n-3)/2
+Сумма углов: (n-2)·180°</div>
+
+  <h3>Теоремы о хордах и касательных</h3>
+  <div class="formula">MT² = MA · MB  (касательная и секущая)
+AM · MB = CM · MD  (пересекающиеся хорды)</div>
+</section>
+
+<!-- ==================== СТЕРЕОМЕТРИЯ ==================== -->
+<section class="topic" data-cat="stereo">
+  <h2>🧊 Стереометрия</h2>
+
+  <div class="definition">
+    <b>Стереометрия</b> — раздел геометрии о фигурах в пространстве.
+  </div>
+
+  <h3>Куб</h3>
+  <div class="formula">V = a³
+S = 6a²
+d = a√3</div>
+
+  <h3>Параллелепипед</h3>
+  <div class="formula">V = a·b·c
+S = 2(ab + bc + ac)
+d = √(a² + b² + c²)</div>
+
+  <h3>Призма</h3>
+  <div class="formula">V = S_осн · h
+S_бок = P_осн · h
+S_полн = 2S_осн + S_бок</div>
+
+  <h3>Пирамида</h3>
+  <div class="formula">V = ⅓ · S_осн · h
+S_бок = ½ · P_осн · l
+l — апофема</div>
+
+  <h3>Цилиндр</h3>
+  <div class="formula">V = πR²h
+S_бок = 2πRh
+S_полн = 2πR(R + h)</div>
+
+  <h3>Конус</h3>
+  <div class="formula">V = ⅓πR²h
+S_бок = πRl
+S_полн = πR(R + l)
+l = √(R² + h²)</div>
+
+  <h3>Сфера и шар</h3>
+  <div class="formula">S = 4πR²
+V = 4/3·πR³</div>
+
+  <h3>Усечённый конус</h3>
+  <div class="formula">V = ⅓πh(R² + Rr + r²)
+S_бок = π(R + r)l</div>
+
+  <h3>Усечённая пирамида</h3>
+  <div class="formula">V = ⅓h(S₁ + S₂ + √(S₁S₂))</div>
+</section>
+
+<!-- ==================== АНАЛИТИЧЕСКАЯ ГЕОМЕТРИЯ ==================== -->
+<section class="topic" data-cat="analit">
+  <h2>📉 Аналитическая геометрия</h2>
+
+  <div class="definition">
+    <b>Аналитическая геометрия</b> — раздел геометрии, где фигуры описываются уравнениями.
+  </div>
+
+  <div class="formula"><span class="label">Расстояние между точками</span>d = √((x₂-x₁)² + (y₂-y₁)²)</div>
+
+  <div class="formula"><span class="label">Середина отрезка</span>M = ((x₁+x₂)/2, (y₁+y₂)/2)</div>
+
+  <div class="formula"><span class="label">Деление отрезка</span>x = (x₁ + λx₂)/(1 + λ)
+y = (y₁ + λy₂)/(1 + λ)</div>
+
+  <h3>Уравнение прямой</h3>
+  <div class="formula">y = kx + b
+k = (y₂-y₁)/(x₂-x₁)
+y - y₁ = k(x - x₁)</div>
+
+  <h3>Взаимное расположение</h3>
+  <div class="formula">Параллельны: k₁ = k₂
+Перпендикулярны: k₁·k₂ = -1
+Угол: tanθ = |(k₂-k₁)/(1+k₁k₂)|</div>
+
+  <h3>Расстояние от точки до прямой</h3>
+  <div class="formula">d = |Ax₀ + By₀ + C|/√(A² + B²)
+Прямая: Ax + By + C = 0</div>
+
+  <h3>Окружность</h3>
+  <div class="formula">(x-a)² + (y-b)² = R²
+Центр: (a, b), радиус: R</div>
+
+  <h3>Эллипс</h3>
+  <div class="formula">x²/a² + y²/b² = 1
+c² = a² - b²
+e = c/a</div>
+
+  <h3>Гипербола</h3>
+  <div class="formula">x²/a² - y²/b² = 1
+c² = a² + b²</div>
+
+  <h3>Парабола</h3>
+  <div class="formula">y² = 2px
+y = ax² + bx + c
+Вершина: x = -b/2a</div>
+</section>
+
+<!-- ==================== ВЕКТОРЫ ==================== -->
+<section class="topic" data-cat="vect">
+  <h2>➡️ Векторы</h2>
+
+  <div class="definition">
+    <b>Вектор</b> — направленный отрезок, имеющий длину и направление.
+  </div>
+
+  <div class="formula"><span class="label">Координаты</span>a = (x₁, y₁)
+b = (x₂, y₂)</div>
+
+  <div class="formula"><span class="label">Сложение и вычитание</span>a + b = (x₁+x₂, y₁+y₂)
+a - b = (x₁-x₂, y₁-y₂)</div>
+
+  <div class="formula"><span class="label">Умножение на число</span>k·a = (kx₁, ky₁)</div>
+
+  <div class="formula"><span class="label">Длина вектора</span>|a| = √(x₁² + y₁²)</div>
+
+  <div class="formula"><span class="label">Скалярное произведение</span>a·b = x₁x₂ + y₁y₂
+a·b = |a|·|b|·cosθ</div>
+
+  <div class="formula"><span class="label">Угол между векторами</span>cosθ = (a·b)/(|a|·|b|)</div>
+
+  <div class="formula"><span class="label">Условия</span>Параллельны: x₁/x₂ = y₁/y₂
+Перпендикулярны: x₁x₂ + y₁y₂ = 0</div>
+
+  <div class="formula"><span class="label">В пространстве</span>a = (x, y, z)
+|a| = √(x² + y² + z²)
+a·b = x₁x₂ + y₁y₂ + z₁z₂</div>
+</section>
+
+<!-- ==================== ВЕРОЯТНОСТЬ ==================== -->
+<section class="topic" data-cat="prob">
+  <h2>🎲 Вероятность</h2>
+
+  <div class="definition">
+    <b>Вероятность</b> — мера возможности наступления события. Число от 0 до 1.
+  </div>
+
+  <div class="formula"><span class="label">Определение</span>P(A) = m/n
+m — благоприятные исходы
+n — все исходы
+0 ≤ P(A) ≤ 1</div>
+  <div class="example"><b>Пример:</b> Вероятность выпадения 3 на кубике: P = 1/6</div>
+
+  <div class="formula"><span class="label">Противоположное событие</span>P(Ā) = 1 - P(A)</div>
+
+  <div class="formula"><span class="label">Сложение</span>P(A ∪ B) = P(A) + P(B) - P(A ∩ B)
+Несовместные: P(A ∪ B) = P(A) + P(B)</div>
+
+  <div class="formula"><span class="label">Умножение</span>P(A ∩ B) = P(A)·P(B|A)
+Независимые: P(A ∩ B) = P(A)·P(B)</div>
+
+  <div class="formula"><span class="label">Условная вероятность</span>P(B|A) = P(A ∩ B)/P(A)</div>
+
+  <div class="formula"><span class="label">Полная вероятность</span>P(A) = Σ P(Hᵢ)·P(A|Hᵢ)</div>
+
+  <div class="formula"><span class="label">Формула Байеса</span>P(Hᵢ|A) = P(Hᵢ)·P(A|Hᵢ) / ΣP(Hⱼ)·P(A|Hⱼ)</div>
+
+  <div class="formula"><span class="label">Формула Бернулли</span>Pₙ(k) = C(n,k)·pᵏ·qⁿ⁻ᵏ
+q = 1 - p</div>
+</section>
+
+<!-- ==================== КОМБИНАТОРИКА ==================== -->
+<section class="topic" data-cat="combin">
+  <h2>🔀 Комбинаторика</h2>
+
+  <div class="definition">
+    <b>Комбинаторика</b> — раздел математики о подсчёте количества комбинаций.
+  </div>
+
+  <div class="formula"><span class="label">Факториал</span>n! = 1·2·3·...·n
+0! = 1
+1! = 1</div>
+  <div class="example"><b>Пример:</b> 4! = 1·2·3·4 = 24</div>
+
+  <div class="formula"><span class="label">Перестановки</span>Pₙ = n!</div>
+  <div class="explanation">Сколькими способами можно расставить n предметов.</div>
+
+  <div class="formula"><span class="label">Размещения</span>A(n,k) = n!/(n-k)!</div>
+  <div class="explanation">Выбор k предметов из n с учётом порядка.</div>
+
+  <div class="formula"><span class="label">Сочетания</span>C(n,k) = n!/(k!(n-k)!)
+C(n,k) = C(n,n-k)
+C(n,0) = C(n,n) = 1</div>
+  <div class="explanation">Выбор k предметов из n без учёта порядка.</div>
+
+  <div class="formula"><span class="label">Свойства сочетаний</span>C(n,k) = C(n-1,k-1) + C(n-1,k)
+C(n,1) = n
+C(n,2) = n(n-1)/2</div>
+
+  <div class="formula"><span class="label">Размещения с повторением</span>Ā(n,k) = nᵏ</div>
+
+  <div class="formula"><span class="label">Сочетания с повторением</span>C̄(n,k) = C(n+k-1, k)</div>
+</section>
+
+<!-- ==================== СТАТИСТИКА ==================== -->
+<section class="topic" data-cat="stat">
+  <h2>📊 Статистика</h2>
+
+  <div class="definition">
+    <b>Статистика</b> — раздел математики о сборе, обработке и анализе данных.
+  </div>
+
+  <div class="formula"><span class="label">Среднее арифметическое</span>x̄ = (x₁ + x₂ + ... + xₙ)/n</div>
+  <div class="example"><b>Пример:</b> Среднее чисел 2, 4, 6: (2+4+6)/3 = 4</div>
+
+  <div class="formula"><span class="label">Медиана</span>Серединное значение упорядоченного ряда</div>
+
+  <div class="formula"><span class="label">Мода</span>Наиболее часто встречающееся значение</div>
+
+  <div class="formula"><span class="label">Дисперсия</span>D = Σ(xᵢ - x̄)²/n</div>
+
+  <div class="formula"><span class="label">Среднеквадратичное отклонение</span>σ = √D</div>
+
+  <div class="formula"><span class="label">Коэффициент вариации</span>V = (σ/x̄)·100%</div>
+
+  <div class="formula"><span class="label">Размах</span>R = x_max - x_min</div>
+</section>
+
+<!-- ==================== МАТРИЦЫ ==================== -->
+<section class="topic" data-cat="matr">
+  <h2>🔲 Матрицы</h2>
+
+  <div class="definition">
+    <b>Матрица</b> — таблица чисел, расположенных в строках и столбцах.
+  </div>
+
+  <div class="formula"><span class="label">Определитель 2×2</span>|a b|
+|c d| = ad - bc</div>
+
+  <div class="formula"><span class="label">Определитель 3×3</span>|a₁ b₁ c₁|
+|a₂ b₂ c₂|
+|a₃ b₃ c₃|
+= a₁b₂c₃ + b₁c₂a₃ + c₁a₂b₃ - c₁b₂a₃ - b₁a₂c₃ - a₁c₂b₃</div>
+
+  <div class="formula"><span class="label">Умножение</span>(AB)ᵢⱼ = Σ aᵢₖ·bₖⱼ</div>
+
+  <div class="formula"><span class="label">Обратная матрица</span>A⁻¹ = (1/detA)·adj(A)
+A·A⁻¹ = A⁻¹·A = E</div>
+
+  <div class="formula"><span class="label">Свойства</span>(AB)ᵀ = BᵀAᵀ
+(AB)⁻¹ = B⁻¹A⁻¹
+det(AB) = detA·detB
+det(Aᵀ) = detA</div>
+
+  <div class="formula"><span class="label">Правило Крамера</span>xᵢ = Δᵢ/Δ</div>
+</section>
+
+<!-- ==================== КОМПЛЕКСНЫЕ ==================== -->
+<section class="topic" data-cat="compl">
+  <h2>ℂ Комплексные числа</h2>
+
+  <div class="definition">
+    <b>Комплексное число</b> — число вида a + bi, где i² = -1.
+  </div>
+
+  <div class="formula"><span class="label">Определение</span>z = a + bi
+i² = -1
+a — действительная часть
+b — мнимая часть</div>
+
+  <div class="formula"><span class="label">Модуль и аргумент</span>|z| = √(a² + b²)
+arg z = arctan(b/a)
+z = |z|(cosφ + i·sinφ)</div>
+
+  <div class="formula"><span class="label">Действия</span>(a+bi) + (c+di) = (a+c) + (b+d)i
+(a+bi)(c+di) = (ac-bd) + (ad+bc)i
+(a+bi)/(c+di) = ((a+bi)(c-di))/(c²+d²)</div>
+
+  <div class="formula"><span class="label">Сопряжённое</span>z̄ = a - bi
+z·z̄ = |z|²</div>
+
+  <div class="formula"><span class="label">Формула Муавра</span>zⁿ = |z|ⁿ(cos(nφ) + i·sin(nφ))</div>
+
+  <div class="formula"><span class="label">Корень</span>ⁿ√z = |z|^(1/n)·(cos((φ+2πk)/n) + i·sin((φ+2πk)/n))
+k = 0, 1, ..., n-1</div>
+
+  <div class="formula"><span class="label">Формула Эйлера</span>e^(iφ) = cosφ + i·sinφ
+e^(iπ) + 1 = 0</div>
+</section>
+
+<!-- ==================== ПРОГРЕССИИ ==================== -->
+<section class="topic" data-cat="prog">
+  <h2>🔗 Прогрессии</h2>
+
+  <div class="definition">
+    <b>Прогрессия</b> — последовательность чисел, где каждое следующее получается по определённому правилу.
+  </div>
+
+  <h3>Арифметическая прогрессия</h3>
+  <div class="explanation">Каждое следующее число больше предыдущего на одно и то же число d.</div>
+  <div class="formula">aₙ = a₁ + (n-1)d
+Sₙ = n(a₁ + aₙ)/2
+Sₙ = n(2a₁ + (n-1)d)/2
+aₙ = (aₙ₋₁ + aₙ₊₁)/2</div>
+  <div class="example"><b>Пример:</b> 2, 5, 8, 11, ... d = 3
+a₅ = 2 + 4·3 = 14</div>
+
+  <h3>Геометрическая прогрессия</h3>
+  <div class="explanation">Каждое следующее число больше предыдущего в q раз.</div>
+  <div class="formula">bₙ = b₁·qⁿ⁻¹
+Sₙ = b₁(qⁿ - 1)/(q - 1), q ≠ 1
+S = b₁/(1 - q), |q| < 1
+bₙ² = bₙ₋₁ · bₙ₊₁</div>
+  <div class="example"><b>Пример:</b> 3, 6, 12, 24, ... q = 2
+b₅ = 3·2⁴ = 48</div>
+
+  <h3>Суммы</h3>
+  <div class="formula">Σk = n(n+1)/2
+Σk² = n(n+1)(2n+1)/6
+Σk³ = (n(n+1)/2)²</div>
+</section>
+
+  <div class="no-result hidden" id="noResult">Ничего не найдено 😔</div>
+
+</main>
+
+<footer>
+  © 2026 ВСЯ МАТЕМАТИКА — Формулы + Объяснения<br>
+  <span style="font-size:0.8rem;">Всё просто • Всё в одном месте</span>
+</footer>
+
+<script>
+  const navButtons = document.querySelectorAll('#nav button');
+  const topics = document.querySelectorAll('.topic');
+  const searchInput = document.getElementById('search');
+  const noResult = document.getElementById('noResult');
+
+  navButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      navButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      topics.forEach(topic => {
+        if (filter === 'all' || topic.dataset.cat === filter) {
+          topic.classList.remove('hidden');
+        } else {
+          topic.classList.add('hidden');
+        }
+      });
+      searchInput.value = '';
+      noResult.classList.add('hidden');
+    });
+  });
+
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase().trim();
+    let found = 0;
+    topics.forEach(topic => {
+      const text = topic.textContent.toLowerCase();
+      if (text.includes(query)) {
+        topic.classList.remove('hidden');
+        found++;
+      } else {
+        topic.classList.add('hidden');
+      }
+    });
+    if (found === 0 && query !== '') {
+      noResult.classList.remove('hidden');
+    } else {
+      noResult.classList.add('hidden');
+    }
+  });
+</script>
+
+</body>
+</html>
